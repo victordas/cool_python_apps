@@ -15,24 +15,27 @@ def set_todos(todos):
 while True:
     user_action = input("Type A to add a new todo" \
     "\nType S to show current items in todos" \
-    "\nType Q to quit the application" \
     "\nType E to edit a todo item" \
     "\nType R to remove a todo item" \
+    "\nType Q to quit the application" \
     "\n\nEnter an option: ").strip().upper()
     
     match user_action:
         case 'A':
-            todos = get_todos()
-            todo = input("\n\nEnter a todo: ") + "\n"
-            todos.append(todo)
-            set_todos(todos)
+            while True:
+                todos = get_todos()
+                todo = input("\n\nEnter a todo (Type 'Q' when done): ")
+                if todo.strip().upper() == 'Q':
+                    break;
+                todos.append(todo + "\n")
+                set_todos(todos)
                 
         case 'S':
             print("\n")
             
             todos = get_todos()
             for index, item in enumerate(todos):
-                print(f"{index + 1}: {item.strip("\n")}")
+                print(f"{index + 1}. {item.strip("\n")}")
 
             print("\n")
 
@@ -62,6 +65,6 @@ while True:
                 print("\nWe can't find the item")
 
         case _:
-            print("\nInvalid option. Retry!!")
+            print(f"\n{'=' * 23}\nInvalid option. Retry!!\n{'=' * 23}\n")
 
 print("See ya!")
