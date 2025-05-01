@@ -5,6 +5,7 @@ while True:
     "\nType S to show current items in todos" \
     "\nType Q to quit the application" \
     "\nType E to edit a todo item" \
+    "\nType R to remove a todo item" \
     "\n\nEnter an option: ").strip().upper()
     
     match user_action:
@@ -12,8 +13,9 @@ while True:
             todo = input("\n\nEnter a todo: ")
             todos.append(todo.capitalize())
         case 'S':
-            for item in todos:
-                print(item)
+            for index, item in enumerate(todos):
+                print(f"{index + 1}: {item}")
+            print("\n\n")
         case 'Q':
             break
         case 'E':
@@ -24,9 +26,14 @@ while True:
                 todos[serial_number] = new_todo
             else:
                 print("\nWe can't find the item")
-
+        case 'R':
+            serial_number = int(input("\n\nEnter the item number to remove: ")) - 1
+            if len(todos) > serial_number > -1:
+                removed_todo = todos.pop(serial_number)
+                print(f"\nRemoved todo: ({removed_todo})")
+            else:
+                print("\nWe can't find the item")
         case _:
-            print("\nInvalid option. Application will quit now!!")
-            break
+            print("\nInvalid option. Retry!!")
 
 print("See ya!")
