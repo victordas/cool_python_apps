@@ -1,4 +1,11 @@
 todos = []
+try:
+    file = open('src/todo_app/todos.txt', 'r')
+    todos = file.readlines()
+    file.close()
+finally:
+    print()
+
 
 while True:
     user_action = input("Type A to add a new todo" \
@@ -10,8 +17,11 @@ while True:
     
     match user_action:
         case 'A':
-            todo = input("\n\nEnter a todo: ")
-            todos.append(todo.capitalize())
+            todo = input("\n\nEnter a todo: ") + "\n"
+            todos.append(todo);
+            file = open('src/todo_app/todos.txt', 'w')
+            file.writelines(todos)
+            file.close()
         case 'S':
             for index, item in enumerate(todos):
                 print(f"{index + 1}: {item}")
