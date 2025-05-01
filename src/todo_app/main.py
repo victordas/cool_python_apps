@@ -1,11 +1,16 @@
-todos = []
-try:
-    file = open('src/todo_app/todos.txt', 'r')
-    todos = file.readlines()
-    file.close()
-finally:
-    print()
 
+def get_todos():
+    try:
+        with open('src/todo_app/todos.txt', 'r') as file:
+            todos = file.readlines()
+            return todos
+    except:
+        return []
+    
+
+def set_todos(todos):
+    with open('src/todo_app/todos.txt', 'w') as file:
+        file.writelines(todos)
 
 while True:
     user_action = input("Type A to add a new todo" \
@@ -17,32 +22,45 @@ while True:
     
     match user_action:
         case 'A':
+            todos = get_todos()
             todo = input("\n\nEnter a todo: ") + "\n"
-            todos.append(todo);
-            file = open('src/todo_app/todos.txt', 'w')
-            file.writelines(todos)
-            file.close()
+            todos.append(todo)
+            set_todos(todos)
+                
         case 'S':
+            print("\n")
+            
+            todos = get_todos()
             for index, item in enumerate(todos):
-                print(f"{index + 1}: {item}")
-            print("\n\n")
+                print(f"{index + 1}: {item.strip("\n")}")
+
+            print("\n")
+
         case 'Q':
             break
+
         case 'E':
+            todos = get_todos()
             serial_number = int(input("\n\nEnter the item number to edit: ")) - 1
             if len(todos) > serial_number > -1:
-                current_todo = todos[serial_number]
-                new_todo = input(f"\nEdit todo ({current_todo}): ")
+                current_todo = todos[serial_number].strip("\n")
+                new_todo = input(f"\nEdit todo ({current_todo}): ") + "\n"
                 todos[serial_number] = new_todo
+                set_todos(todos)
             else:
                 print("\nWe can't find the item")
+
         case 'R':
+            todos = get_todos()
             serial_number = int(input("\n\nEnter the item number to remove: ")) - 1
             if len(todos) > serial_number > -1:
                 removed_todo = todos.pop(serial_number)
-                print(f"\nRemoved todo: ({removed_todo})")
+                print(f"\nRemoved todo: ({removed_todo.strip("\n")})")               
+                set_todos(todos)
+
             else:
                 print("\nWe can't find the item")
+
         case _:
             print("\nInvalid option. Retry!!")
 
