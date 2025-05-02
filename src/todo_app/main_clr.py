@@ -1,16 +1,7 @@
+from modules.functions import get_todos, set_todos
+from time import strftime
 
-def get_todos():
-    try:
-        with open('src/todo_app/todos.txt', 'r') as file:
-            todos = file.readlines()
-            return todos
-    except:
-        return []
-    
-
-def set_todos(todos):
-    with open('src/todo_app/todos.txt', 'w') as file:
-        file.writelines(todos)
+print(f"\nIt is {strftime("%A, %Y-%m-%d %H:%M:%S")}\n")
 
 while True:
     user_action = input("Type A to add a new todo" \
