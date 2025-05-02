@@ -1,4 +1,4 @@
-from streamlit import columns, header, image, info, set_page_config, title, write
+from streamlit import columns, header, image, info, set_page_config, subheader, title, write
 from pandas import read_csv
 
 set_page_config(layout='wide')
@@ -21,7 +21,7 @@ with col2:
 
     info(content)
 
-write("""
+subheader("""
 Below you can find some cool Python apps
 """)
 
