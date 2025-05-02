@@ -18,7 +18,7 @@ while True:
                 todo = input("\n\nEnter a todo (Type 'Q' when done): ")
                 if todo.strip().upper() == 'Q':
                     break;
-                todos.append(todo + "\n")
+                todos.append(todo)
                 set_todos(todos)
                 
         case 'S':
@@ -49,7 +49,7 @@ while True:
             serial_number = int(input("\n\nEnter the item number to remove: ")) - 1
             if len(todos) > serial_number > -1:
                 removed_todo = todos.pop(serial_number)
-                print(f"\nRemoved todo: ({removed_todo.strip("\n")})")               
+                print(f"\nRemoved todo: ({removed_todo})")               
                 set_todos(todos)
 
             else:
