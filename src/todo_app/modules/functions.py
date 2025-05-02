@@ -1,5 +1,3 @@
-import subprocess
-
 FILE_PATH='../todo_app/todos.txt'
 
 def get_todos():
@@ -20,10 +18,3 @@ def set_todos(todos):
     """
     with open(FILE_PATH, 'w') as file:
         file.writelines([todo + "\n" for todo in todos])
-
-
-def open_in_windows_browser(url):
-    try:
-        subprocess.run(["powershell.exe", "Start-Process", url], check=True)
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to open browser: {e}")
