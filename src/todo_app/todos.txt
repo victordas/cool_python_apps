@@ -1,6 +1,2 @@
-Click
-Resize
-Desaturate
-Retouch
-Upload
-Post
+Take a picture
+Edit on photoshop

@@ -1,13 +1,15 @@
 import subprocess
 
+FILE_PATH='../todo_app/todos.txt'
+
 def get_todos():
     """
     Read a text file and return list of to-do items
     """
     try:
-        with open('src/todo_app/todos.txt', 'r') as file:
+        with open(FILE_PATH, 'r') as file:
             todos = file.readlines()
-            return todos
+            return [todo.strip("\n") for todo in todos]
     except:
         return []
     
@@ -16,8 +18,8 @@ def set_todos(todos):
     """
     Write a list of to-do items to the file
     """
-    with open('src/todo_app/todos.txt', 'w') as file:
-        file.writelines(todos)
+    with open(FILE_PATH, 'w') as file:
+        file.writelines([todo + "\n" for todo in todos])
 
 
 def open_in_windows_browser(url):
