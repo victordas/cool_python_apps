@@ -1,4 +1,4 @@
-from streamlit import form, form_submit_button, header, session_state, text_area, text_input, write
+from streamlit import form, form_submit_button, header, text_area, text_input
 from re import match
 from send_email import send_mail
 
